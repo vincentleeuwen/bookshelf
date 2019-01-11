@@ -1,6 +1,6 @@
 # Bookshelf Project
 
-## Bookshelf is small online solution for sorting books you are reading, want to or have read. Created with React.js
+## Bookshelf is small online solution for sorting books you are reading, want to or have read. Created with React.js. This project is created as a part of Udacity React, Redux, React Native Nanodegree course.
 
 ### Features:
 
