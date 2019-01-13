@@ -22,10 +22,8 @@ class Bookshelf extends React.Component {
                       }}
                     />
                     <div className="book-shelf-changer">
-                      <select>
-                        <option value="move" disabled>
-                          Move to...
-                        </option>
+                      <select onChange={() => this.props.onSortingBook(book)}>
+                        <option value="move">Move to...</option>
                         <option value="currentlyReading">
                           Currently Reading
                         </option>

@@ -18,11 +18,11 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      const currentlyReading = books.filter(
+      let currentlyReading = books.filter(
         book => book.shelf === "currentlyReading"
       );
-      const wantToRead = books.filter(book => book.shelf === "wantToRead");
-      const read = books.filter(book => book.shelf === "read");
+      let wantToRead = books.filter(book => book.shelf === "wantToRead");
+      let read = books.filter(book => book.shelf === "read");
 
       this.setState({
         currentlyReading,
@@ -31,6 +31,20 @@ class BooksApp extends React.Component {
       });
     });
   }
+
+  sortBooks = book => {
+    this.setState(currentState => ({
+      currentlyReading: currentState.currentlyReading.filter(b => {
+        return b.title !== book.title;
+      }),
+      wantToRead: currentState.wantToRead.filter(b => {
+        return b.title !== book.title;
+      }),
+      read: currentState.read.filter(b => {
+        return b.title !== book.title;
+      })
+    }));
+  };
 
   render() {
     return (
@@ -46,9 +60,18 @@ class BooksApp extends React.Component {
                 <Bookshelf
                   title="Currently Reading"
                   books={this.state.currentlyReading}
+                  onSortingBook={this.sortBooks}
                 />
-                <Bookshelf title="Want to Read" books={this.state.wantToRead} />
-                <Bookshelf title="Read" books={this.state.read} />
+                <Bookshelf
+                  title="Want to Read"
+                  books={this.state.wantToRead}
+                  onSortingBook={this.sortBooks}
+                />
+                <Bookshelf
+                  title="Read"
+                  books={this.state.read}
+                  onSortingBook={this.sortBooks}
+                />
               </div>
               <Link className="open-search" to="/search" />
             </div>
