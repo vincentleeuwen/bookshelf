@@ -22,7 +22,7 @@ class Bookshelf extends React.Component {
                       }}
                     />
                     <div className="book-shelf-changer">
-                      <select onChange={() => this.props.onSortingBook(book)}>
+                      <select onChange={event => this.props.onSortingBook(event, book)}>
                         <option value="move">Move to...</option>
                         <option value="currentlyReading">
                           Currently Reading
